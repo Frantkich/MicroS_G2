@@ -1,4 +1,4 @@
-package com.microsg2.microsg2author.model;
+package com.microsg2.microsg2author.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
