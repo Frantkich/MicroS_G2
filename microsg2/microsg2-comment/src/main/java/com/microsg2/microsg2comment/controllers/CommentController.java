@@ -15,7 +15,7 @@ import com.microsg2.microsg2comment.models.Comment;
 import com.microsg2.microsg2comment.repositories.CommentRepository;
 
 @RestController
-public class commentController {
+public class CommentController {
 	
 	@Autowired
 	private CommentRepository commentRepository;
