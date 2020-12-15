@@ -1,4 +1,4 @@
-package com.microsg2.microsg2comment.models;
+package com.microsg2.microsg2article.model;
 
 import java.sql.Date;
 
@@ -9,14 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "comment")
-public class Comment {
-	
+@Table(name = "article")
+public class Article {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
+
+	@Column(name="title")
+	private String title;
 	
 	@Column(name="date")
 	private Date date;
@@ -25,17 +29,25 @@ public class Comment {
 	private String content;
 	
 	@Column(name="author_id")
-	private int author_id;
+	private int authorId;
 	
-	@Column(name="article_id")
-	private int article_id;
+	@Column(name="category_id")
+	private int categoryId;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Date getDate() {
@@ -54,20 +66,20 @@ public class Comment {
 		this.content = content;
 	}
 
-	public int getAuthor_id() {
-		return author_id;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
 	}
 
-	public int getArticle_id() {
-		return article_id;
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setArticle_id(int article_id) {
-		this.article_id = article_id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	
