@@ -13,13 +13,13 @@ public class GatewayConfig {
 
 		return builder.routes()
 				.route(r -> r.path("/author/**")
-						.uri("http://authorapi"))
+						.uri("lb://authorapi"))
 				.route(r -> r.path("/category/**")
-						.uri("http://categoryapi"))
+						.uri("lb://categoryapi"))
 				.route(r -> r.path("/article/**")
-						.uri("http://articleapi"))
+						.uri("lb://articleapi"))
 				.route(r -> r.path("/comment/**")
-						.uri("http://commentapi"))
+						.uri("lb://commentapi"))
 				.build();
 	}
 }

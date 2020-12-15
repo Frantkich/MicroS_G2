@@ -19,8 +19,7 @@ public class CategoryProxy {
 	private CustomProperties props;
 	
 	public YCategory getCategory(int id) {
-		
-		String getCategoryUrl = props.getApiUrl() + "/category/" + id;
+		String getCategoryUrl = "http://localhost:9004/category/" + id;
 		ResponseEntity<YCategory> response = restTemplate.exchange(getCategoryUrl, HttpMethod.GET, null, YCategory.class);
 		
 		return response.getBody();

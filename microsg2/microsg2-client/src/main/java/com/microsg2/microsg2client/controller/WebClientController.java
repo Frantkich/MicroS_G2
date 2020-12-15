@@ -13,8 +13,8 @@ import com.microsg2.microsg2client.model.Article;
 import com.microsg2.microsg2client.model.YAuthor;
 import com.microsg2.microsg2client.model.YCategory;
 import com.microsg2.microsg2client.repository.ArticleProxy;
-import com.microsg2.microsg2client.repository.AuthorProxy;
 import com.microsg2.microsg2client.repository.CategoryProxy;
+import com.microsg2.microsg2client.repository.AuthorProxy;
 
 @Controller
 public class WebClientController {

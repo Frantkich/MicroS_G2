@@ -7,12 +7,14 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.YCategory;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
+@Repository
 public class CategoryProxy extends GenericProxy {
 
 public YCategory getCategory(int id) {

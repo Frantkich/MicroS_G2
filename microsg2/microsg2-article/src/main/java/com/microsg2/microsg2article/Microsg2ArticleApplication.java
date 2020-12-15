@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 public class Microsg2ArticleApplication {
 
 	@Bean
-	@LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

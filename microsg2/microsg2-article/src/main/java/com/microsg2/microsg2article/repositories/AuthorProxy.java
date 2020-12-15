@@ -19,8 +19,7 @@ public class AuthorProxy {
 	private CustomProperties props;
 	
 	public YAuthor getAuthor(int id) {
-		
-		String getAuthorUrl = props.getApiUrl() + "/author/" + id;
+		String getAuthorUrl = "http://localhost:9001/author/" + id;
 		ResponseEntity<YAuthor> response = restTemplate.exchange(getAuthorUrl, HttpMethod.GET, null, YAuthor.class);
 		
 		return response.getBody();
