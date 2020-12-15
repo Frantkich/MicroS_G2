@@ -16,7 +16,4 @@ public class CustomProperties {
 	public void setApiUrl(String apiUrl) {
 		this.apiUrl = apiUrl;
 	}
-	
-	
-	
 }

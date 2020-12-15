@@ -12,9 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.microsg2.microsg2client.model.Article;
 import com.microsg2.microsg2client.model.YAuthor;
 import com.microsg2.microsg2client.model.YCategory;
+import com.microsg2.microsg2client.model.YComment;
 import com.microsg2.microsg2client.repository.ArticleProxy;
 import com.microsg2.microsg2client.repository.CategoryProxy;
 import com.microsg2.microsg2client.repository.AuthorProxy;
+import com.microsg2.microsg2client.repository.CommentProxy;
 
 @Controller
 public class WebClientController {
@@ -27,6 +29,9 @@ public class WebClientController {
 		
 	@Autowired
 	private ArticleProxy articleProxy;
+
+	@Autowired
+	private CommentProxy commentProxy;
 		
 	@GetMapping(value = {"/", "/{id}"})
 	public String getHomePage(
@@ -36,14 +41,10 @@ public class WebClientController {
 		//model.addAttribute("users", users);	
 		Iterable<YCategory> categories = categoryProxy.getCategories();
 		//model.addAttribute("users", users);	
-			
-		int idToGet = 1;
-		if(id != null) {
-			idToGet = id;
-		}
-		Article article = articleProxy.getArticle(idToGet);
+		Iterable<YComment> comments = commentProxy.getComments();
+		//model.addAttribute("users", users);	
+		Iterable<Article> article = articleProxy.getArticles();
 		//model.addAttribute("product", product);
-			
 		return "homePage";
 	}
 		
@@ -104,8 +105,6 @@ public class WebClientController {
 	@GetMapping("/deleteCategory/{id}")
 	public ModelAndView deleteCategory(@PathVariable int id) {
 		categoryProxy.deleteCategory(id);
-		return new ModelAndView("redirect:/");	
+		return new ModelAndView("redirect:/");
 	}
-		
-		
 }
