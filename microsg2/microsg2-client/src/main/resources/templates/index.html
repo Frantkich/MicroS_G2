@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delta</title>
+</head>
+
+<body>
+	<div class="nav">
+		<h1>Welcome</h1>
+		<!-- <a th:if="${user == null}" th:href="@{/login}">log-in</a>
+		<a th:unless="${user == null}" th:href="@{/user}">Connected</a> -->
+	</div>
+
+	<a class="createArticle" th:href="@{/createArticle}">create an article</a>
+
+	<div class="categories" th:each="category : ${categories}">
+		<a class="category" th:href="@{/category/${category.id}}" th:utext="${category.name}">...</a>
+	</div>
+</body>
+
+</html>

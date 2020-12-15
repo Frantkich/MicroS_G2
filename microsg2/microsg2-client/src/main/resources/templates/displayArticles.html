@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title th:utext="Delta - ${category}">...</title>
+</head>
+
+<body>
+  <div class="nav">
+    <h1 th:utext="${category}">...</h1>
+  </div>
+
+  <div class="articles" th:each="article : ${articles}">
+    <div class="article" th:href="@{/article/${article.id}}">
+      <div class="articleHeader">
+        <div class="title">
+          <h3 th:utext="${article.title}">...</h3>
+        </div>
+        <div class="date">
+          <p th:utext="${article.title}">../../....</p>
+        </div>
+        <!-- Ajout ? On se casse le cul ? -->
+        <div class="author">
+          <p th:utext="${article.author_id}">...</p>
+        </div>
+        <!--  -->
+      </div>
+      <div class="previewContent">
+        <p th:utext="${article.content}">...</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

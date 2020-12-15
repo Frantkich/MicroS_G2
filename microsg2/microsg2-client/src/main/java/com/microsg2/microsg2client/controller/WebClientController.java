@@ -47,26 +47,6 @@ public class WebClientController {
 		return "homePage";
 	}
 		
-	//@GetMapping("/stress")
-	//public ModelAndView stressTest() {
-		//long startTime = System.nanoTime();
-			
-		//for(int i=0; i<100; i++) {
-			//Random r = new Random();
-			//int index = r.nextInt(3)+1;
-			//userProxy.getUser(index);
-		//}
-
-			
-		//long endTime = System.nanoTime();
-		//long duration = (endTime - startTime);
-		//System.out.println("nano : " + duration);
-		//System.out.println("milli : " + duration / 1000000);
-			
-		//return new ModelAndView("redirect:/");
-	//}
-		
-		
 	@GetMapping("/createAuthor")
 	public String createAuthor(Model model) {
 		YAuthor author = new YAuthor();

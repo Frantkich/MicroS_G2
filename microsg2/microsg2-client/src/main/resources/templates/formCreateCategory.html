@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<meta charset="UTF-8">
+	<title>Delta - Create Category</title>
+</head>
+
+<body>
+	<form method="post" th:action="@{/saveCategory}" th:object="${category}">
+		<label for="nameInput">Name</label>
+		<input type="text" th:field="*{username}" id="userNameInput" />
+
+		<input type="submit" value="Validate" />
+	</form>
 </body>
+
 </html>
