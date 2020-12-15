@@ -11,6 +11,12 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 public class Microsg2ArticleApplication {
 
+	@Bean
+	@LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Microsg2ArticleApplication.class, args);
 	}
