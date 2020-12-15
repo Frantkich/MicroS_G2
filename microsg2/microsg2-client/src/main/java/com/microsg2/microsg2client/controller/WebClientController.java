@@ -47,21 +47,43 @@ public class WebClientController {
 		//model.addAttribute("product", product);
 		return "homePage";
 	}
-		
+
+
+	@GetMapping("/article/{id}")
+	public String updateArticle(@PathVariable int id, Model model) {
+		Article article = articleProxy.getArticle(id);
+		model.addAttribute("article", article);
+		YComment comment = new YComment();
+		return "displayArticle";
+	}
+	@GetMapping("/deleteComment/{id}")
+	public ModelAndView deleteComment(@PathVariable int id) {
+		commentProxy.deleteComment(id);
+		return "displayArticle";	
+	}
+	@PostMapping("/saveComment")
+	public ModelAndView saveComment(@ModelAttribute YComment comment) {
+		if(author.getId() == null) {
+			authorProxy.createComment(comment);
+		} else {
+			authorProxy.updateComment(comment);
+		}
+		return "displayArticle";
+	}
+
+
 	@GetMapping("/createAuthor")
 	public String createAuthor(Model model) {
 		YAuthor author = new YAuthor();
 		model.addAttribute("author", author);
 		return "formCreateAuthor";
 	}
-		
 	@GetMapping("/updateAuthor/{id}")
 	public String updateAuthor(@PathVariable int id, Model model) {
 		YAuthor author = authorProxy.getAuthor(id);
 		model.addAttribute("author", author);
 		return "formUpdateAuthor";
 	}	
-		
 	@PostMapping("/saveAuthor")
 	public ModelAndView saveAuthor(@ModelAttribute YAuthor author) {
 		if(author.getId() == null) {
@@ -71,27 +93,25 @@ public class WebClientController {
 		}
 		return new ModelAndView("redirect:/");
 	}
-
 	@GetMapping("/deleteAuthor/{id}")
 	public ModelAndView deleteAuthor(@PathVariable int id) {
 		authorProxy.deleteAuthor(id);
 		return new ModelAndView("redirect:/");	
 	}
 	
+
 	@GetMapping("/createCategory")
 	public String createCategory(Model model) {
 		YCategory category = new YCategory();
 		model.addAttribute("category", category);
 		return "formCreateCategory";
 	}
-		
 	@GetMapping("/updateCategory/{id}")
 	public String updateCategory(@PathVariable int id, Model model) {
 		YCategory category = categoryProxy.getCategory(id);
 		model.addAttribute("category", category);
 		return "formUpdateCategory";
 	}	
-		
 	@PostMapping("/saveCategory")
 	public ModelAndView saveCategory(@ModelAttribute YCategory category) {
 		if(category.getId() == null) {
@@ -101,10 +121,37 @@ public class WebClientController {
 		}
 		return new ModelAndView("redirect:/");
 	}
-
 	@GetMapping("/deleteCategory/{id}")
 	public ModelAndView deleteCategory(@PathVariable int id) {
 		categoryProxy.deleteCategory(id);
+		return new ModelAndView("redirect:/");
+	}
+	
+
+	@GetMapping("/createArticle")
+	public String createArticle(Model model) {
+		Article article = new Article();
+		model.addAttribute("article", article);
+		return "formCreateArticle";
+	}
+	@GetMapping("/updateArticle/{id}")
+	public String updateArticle(@PathVariable int id, Model model) {
+		Article article = articleProxy.getArticle(id);
+		model.addAttribute("article", article);
+		return "formUpdateArticle";
+	}	
+	@PostMapping("/saveArticle")
+	public ModelAndView saveArticle(@ModelAttribute Article article) {
+		if(article.getId() == null) {
+			articleProxy.createArticle(article);
+		} else {
+			articleProxy.updateArticle(article);
+		}
+		return new ModelAndView("redirect:/");
+	}
+	@GetMapping("/deleteArticle/{id}")
+	public ModelAndView deleteArticle(@PathVariable int id) {
+		articleProxy.deleteArticle(id);
 		return new ModelAndView("redirect:/");
 	}
 }
