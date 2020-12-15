@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 //import com.microsg2.microsg2article.config.CustomProperties;
-import com.microsg2.microsg2article.model.YAuthor;
+import com.microsg2.microsg2article.model.YComment;
 
 @Repository
-public class AuthorProxy {
+public class CommentProxy {
 
 	@Autowired
 	public RestTemplate restTemplate;
@@ -18,10 +18,11 @@ public class AuthorProxy {
 	//@Autowired
 	//private CustomProperties props;
 	
-	public YAuthor getAuthor(int id) {
-		String getAuthorUrl = "http://localhost:9001/author/" + id;
-		ResponseEntity<YAuthor> response = restTemplate.exchange(getAuthorUrl, HttpMethod.GET, null, YAuthor.class);
+	public YComment[] getCommentsByArticle(int id) {
+		String getCommentUrl = "http://localhost:9003/comment/" + id;
+		ResponseEntity<YComment[]> response = restTemplate.exchange(getCommentUrl, HttpMethod.GET, null, YComment[].class);
 		
 		return response.getBody();
 	}
+	
 }

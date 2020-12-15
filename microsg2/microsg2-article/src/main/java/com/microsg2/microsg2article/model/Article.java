@@ -33,6 +33,7 @@ public class Article {
 	
 	@Column(name="category_id")
 	private int categoryId;
+	
 
 	public int getId() {
 		return id;
@@ -81,6 +82,5 @@ public class Article {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-	
 	
 }

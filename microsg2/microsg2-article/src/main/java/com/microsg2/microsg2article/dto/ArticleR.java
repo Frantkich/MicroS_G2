@@ -2,15 +2,9 @@ package com.microsg2.microsg2article.dto;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.microsg2.microsg2article.model.YAuthor;
 import com.microsg2.microsg2article.model.YCategory;
+import com.microsg2.microsg2article.model.YComment;
 
 public class ArticleR {
 	
@@ -25,6 +19,9 @@ public class ArticleR {
 	private YAuthor author;
 	
 	private YCategory category;
+	
+	private YComment[] comments;
+	
 	
 	public int getId() {
 		return id;
@@ -73,4 +70,13 @@ public class ArticleR {
 	public void setCategory(YCategory category) {
 		this.category = category;
 	}
+	
+	public YComment[] getComments() {
+		return comments;
+	}
+
+	public void setComments(YComment[] comments) {
+		this.comments = comments;
+	}
+
 }
