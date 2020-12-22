@@ -33,18 +33,13 @@ public class WebClientController {
 	@Autowired
 	private CommentProxy commentProxy;
 		
-	@GetMapping(value = {"/", "/{id}"})
-	public String getHomePage(
-			@PathVariable(name = "id", required = false) Integer id, 
-			Model model) {		
-		Iterable<YAuthor> authors = authorProxy.getAuthors();
-		//model.addAttribute("users", users);	
+	@GetMapping(value = {"/"})
+	public String getHomePage(Model model) {		
+//		Iterable<YAuthor> authors = authorProxy.getAuthors();
 		Iterable<YCategory> categories = categoryProxy.getCategories();
-		//model.addAttribute("users", users);	
-		Iterable<YComment> comments = commentProxy.getComments();
-		//model.addAttribute("users", users);	
-		Iterable<Article> article = articleProxy.getArticles();
-		//model.addAttribute("product", product);
+		model.addAttribute("categories", categories);	
+//		Iterable<YComment> comments = commentProxy.getComments();
+//		Iterable<Article> article = articleProxy.getArticles();
 		return "index";
 	}
 
