@@ -19,5 +19,4 @@ public class Microsg2ClientApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Microsg2ClientApplication.class, args);
 	}
-
 }

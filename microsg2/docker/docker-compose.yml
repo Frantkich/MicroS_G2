@@ -1,0 +1,48 @@
+version: '3'
+services:
+  ms-eureka:
+    build: ms-server/.
+    ports:
+      - '9100:9100'
+  ms-bootadmin:
+    build: ms-bootadmin/.
+    depends_on:
+      - ms-server
+    ports:
+      - '9200:9200'
+  gateway:
+    build: ms-gateway/.
+    depends_on:
+      - ms-server
+    ports:
+      - '9000:9000'
+  authorapi:
+    build: ms-author/.
+    depends_on:
+      - ms-server
+    ports:
+      - '9001:9001'
+  commentapi:
+    build: ms-comment/.
+    depends_on:
+      - ms-server
+    ports:
+      - '9003:9003'
+  categoryapi:
+    build: ms-category/.
+    depends_on:
+      - ms-server
+    ports:
+      - '9004:9004'
+  articleapi:
+    build: ms-article/.
+    depends_on:
+      - ms-server
+    ports:
+      - '9002:9002'
+  webclient:
+    build: ms-client/.
+    depends_on:
+      - ms-server
+    ports:
+      - '8080:8080'
