@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.YCategory;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @Repository
 public class CategoryProxy extends GenericProxy {
@@ -60,7 +59,6 @@ public class CategoryProxy extends GenericProxy {
 	}
 
 
-	@CircuitBreaker(name ="proxy", fallbackMethod = "fallback")
 	public Iterable<YCategory> getCategories() {
 		String getCategoriesUrl = props.getApiUrl() + "/category";
 		ResponseEntity<Iterable<YCategory>> response = restTemplate.exchange(

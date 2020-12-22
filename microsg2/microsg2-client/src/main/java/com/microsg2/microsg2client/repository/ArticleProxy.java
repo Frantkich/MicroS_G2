@@ -12,8 +12,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.Article;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-
 @Repository
 public class ArticleProxy extends GenericProxy {
 	public Article getArticle(int id) {
@@ -56,7 +54,6 @@ public class ArticleProxy extends GenericProxy {
 	}
 
 
-	@CircuitBreaker(name ="proxy", fallbackMethod = "fallback")
 	public Iterable<Article> getArticles() {
 		String getArticlesUrl = props.getApiUrl() + "/article";
 		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(

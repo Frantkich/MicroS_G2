@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.YComment;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @Repository
 public class CommentProxy extends GenericProxy {
@@ -59,7 +58,6 @@ public class CommentProxy extends GenericProxy {
 	}
 	
 	
-	@CircuitBreaker(name ="proxy", fallbackMethod = "fallback")
 	public Iterable<YComment> getComments() {
 		String getCommentsUrl = props.getApiUrl() + "/comment";
 		ResponseEntity<Iterable<YComment>> response = restTemplate.exchange(

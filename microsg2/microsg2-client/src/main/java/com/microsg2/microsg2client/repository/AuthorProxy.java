@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.YAuthor;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @Repository
 public class AuthorProxy extends GenericProxy {
@@ -59,7 +58,6 @@ public class AuthorProxy extends GenericProxy {
 	}
 	
 	
-	@CircuitBreaker(name ="proxy", fallbackMethod = "fallback")
 	public Iterable<YAuthor> getAuthors() {
 		String getAuthorsUrl = props.getApiUrl() + "/author";
 		ResponseEntity<Iterable<YAuthor>> response = restTemplate.exchange(
