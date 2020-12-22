@@ -1,10 +1,10 @@
 version: '3'
 services:
-  ms-eureka:
+  Eureka-Server:
     build: ms-server/.
     ports:
       - '9100:9100'
-  ms-bootadmin:
+  bootadmin:
     build: ms-bootadmin/.
     depends_on:
       - ms-server
