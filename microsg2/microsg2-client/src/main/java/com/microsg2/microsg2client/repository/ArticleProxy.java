@@ -14,6 +14,7 @@ import com.microsg2.microsg2client.model.Article;
 
 @Repository
 public class ArticleProxy extends GenericProxy {
+	
 	public Article getArticle(int id) {
 		String getArticleUrl = props.getApiUrl() + "/article/" + id;
 		ResponseEntity<Article> response = restTemplate.exchange(
