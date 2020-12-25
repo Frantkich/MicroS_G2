@@ -1,162 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
-	<!--<div class="nav">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delta</title>
+</head>
+
+<body>
+	<div class="nav">
 		<h1>Welcome</h1>
 		<!-- <a th:if="${user == null}" th:href="@{/login}">log-in</a>
-		<a th:unless="${user == null}" th:href="@{/user}">Connected</a> 
+		<a th:unless="${user == null}" th:href="@{/user}">Connected</a> -->
 	</div>
 
-	<!-- <a class="createArticle" th:href="@{/createArticle}">create an article</a>
+	<a class="createArticle" th:href="@{/createArticle}">create an article</a>
 
-	<!-- <div class="categories" th:each="category : ${categories}">
-		<a class="category" th:href="@{/category/${category.id}}" th:utext="${category.name}">...</a> 
-	</div>-->
+	<div class="categories" th:each="category : ${categories}">
+		<a class="category" th:href="@{/category/{id}(id=${category.id})}" th:utext="${category.name}">...</a>
+	</div>
+</body>
 
-
-	<style type="text/css">
-		body
-		{
-			padding-top: 56px;
-		}
-		main
-		{
-			text-align: center;
-		}
-	</style>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<title>
-			  Delta
-		</title>
-		<!-- Bootstrap core CSS -->
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<header>
-			<!-- Navigation -->
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-				<div class="container">
-					<a class="navbar-brand" href="#">Delta</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-					<div class="collapse navbar-collapse" id="navbarResponsive">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item active">
-								<a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-							</li>
-							<c:if test="${ empty sessionScope.userID }">
-								<li class="nav-item"><a class="nav-link" href="<%=application.getContextPath()%>/login">Login</a></li>
-							</c:if>
-							<c:if test="${ !empty sessionScope.userID }">
-								<li class="nav-item"><a class="nav-link" href="<%=application.getContextPath()%>/disconnection">Logout</a></li>
-							</c:if>
-							<c:if test="${ !empty sessionScope.userID }">
-								<li class="nav-item"><a class="nav-link" href="<%=application.getContextPath()%>/article/manage">Manage my content</a></li>
-							</c:if>
-						</ul>
-					</div>
-				</div>
-			</nav>
-			<br>
-			<br>
-			<br>
-		</header>
-		<!-- Page Content -->
-		<div class="container text-align-center">
-			<div class="row">
-				<!-- Blog Entries Column -->
-				<div class="col-md-8">
-					<c:choose>
-						<c:when test="${ index == true }">
-							<h1 class="my-4">
-								Welcome on Delta.
-								<br>
-								<br>
-								<small>
-									Feel free to write anything...
-								</small>
-							</h1>
-						</c:when>
-						<c:otherwise>
-							<h1 class="my-4">All blog articles :</h1>
-						</c:otherwise>
-					</c:choose>
-					<!-- Blog Post -->
-					<c:forEach var="article" items="${ articleList }"  varStatus="status">
-						<div class="card mb-4">
-							<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-							<div class="card-body">
-								<h2 class="card-title"><c:out value="${ article.getTitle() }" /></h2>
-								<p class="card-text">
-									<c:out value="${ article.getArticleDescription() }" />
-								</p>
-								<a href="<%=application.getContextPath()%>/article/read?id=${ article.getArticleID() }" class="btn btn-primary">Read the article &rarr;</a>
-							</div>
-							<div class="card-footer text-muted">
-								Posted on
-								<c:out value="${ article.getArticleDate() }" />
-								 by
-								<c:out value="${ article.getArticleAuthorFirstname() } ${ article.getArticleAuthorLastname() }" />
-							</div>
-						</div>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${ index == true }">
-							<div class="pagination justify-content-center mb-4">
-								<a href="<%=application.getContextPath()%>/article/all" class="btn btn-primary">See all articles &rarr;</a>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="pagination justify-content-center mb-4">
-								<a href="<%=application.getContextPath()%>/" class="btn btn-primary">Home &rarr;</a>
-							</div>
-						</c:otherwise>
-					</c:choose>
-				</div>
-                <!-- Sidebar Widgets Column -->
-                <!-- Categories Widget -->
-				<div class="col-md-4">
-					<div class="card my-4 center">
-						<h5 class="card-header">
-							Category:
-						</h5>
-						<div class="card-body">
-							<ul class="list-group">
-                                <div class="" th:each="category : ${categories}">
-									<a class="list-group-item list-group-item-action" th:href="@{/category/${category.id}}" th:utext="${category.name}">...</a>
-								</div>
-                              </ul>
-						</div>
-                    </div>
-                    <!-- New article Widget -->
-					<c:if test="${ !empty sessionScope.userID }">
-						<div class="card my-4 center">
-							<h5 class="card-header">
-								Something to say ?
-							</h5>
-							<div class="card-body">
-								<div class="row">
-									<br>
-									<a class="btn btn-secondary" th:href="@{/createArticle}">create an article</a>
-								</div>
-							</div>
-						</div>
-					</c:if>
-				</div>
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- Footer -->
-		<footer class="py-5 bg-dark">
-			<div class="container">
-				<p class="m-0 text-center text-white">
-					Created by .... on .....
-					<br>
-					Template link: https://startbootstrap.com/templates/blog/
-				</p>
-			</div>
-		</footer>
-	</body>
-</html>
+</html> 
