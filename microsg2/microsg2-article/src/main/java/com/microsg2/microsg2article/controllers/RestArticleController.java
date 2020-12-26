@@ -20,6 +20,9 @@ public class RestArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
+	@Autowired
+	private ArticleRepository articleRepository;
+	
 	@GetMapping("/article/{id}")
 	public ArticleR getArticle(@PathVariable("id") int id) {
 		return articleService.getArticle(id);
@@ -34,9 +37,10 @@ public class RestArticleController {
 	public Iterable<ArticleR> getCategory(@PathVariable("id") int id) {
 		return articleService.getCategory(id);
 	}	
+	
 	@PostMapping("/article")
 	public Article createCategory(@RequestBody Article article) {
-		article = ArticleRepository.save(article);		
+		article = articleRepository.save(article);		
 		return article;
 	}
 	

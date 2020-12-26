@@ -46,8 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(getProvider())
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .successHandler(new AuthentificationLoginSuccessHandler())
-                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .defaultSuccessUrl("/loginTest")
+                //.failureUrl("/login.html?error=true")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
@@ -62,14 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll();
     }
     
-    private class AuthentificationLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-        @Override
-        public void onAuthenticationSuccess(HttpServletRequest request,
-                                            HttpServletResponse response, Authentication authentication)
-                throws IOException, ServletException {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-    }
     private class AuthentificationLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
         @Override
         public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,

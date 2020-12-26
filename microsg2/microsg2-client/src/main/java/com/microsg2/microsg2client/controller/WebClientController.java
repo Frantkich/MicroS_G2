@@ -1,5 +1,7 @@
 package com.microsg2.microsg2client.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,10 +51,17 @@ public class WebClientController {
 	public void logout() {
 	}
 
-	@PostMapping(value = {"/login"})
+	@GetMapping(value = {"/login"})
 	public String login(Model model) {
 		return "login";
 	}
+	
+	//Test de récuperation suite à connexion.
+	 @GetMapping("/loginTest")
+	 public String currentUserName(Principal principal) {
+		 System.out.println(principal.getName());
+		 return "loginTest";
+	 }
 
 	// ARTICLE
 		@GetMapping("/article/{id}")
