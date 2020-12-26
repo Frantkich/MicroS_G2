@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+<style type="text/css">
+		body
+		{
+			padding-top: 56px;
+		}
 
-<head>
-	<meta charset="UTF-8">
-	<title>Delta - Login</title>
-</head>
+		main
+		{
+			text-align: center;
+		}
 
-<body>
-	<div class="nav">
-		<h1>Login</h1>
-	</div>
-</body>
+		.card
+		{
+			margin-left: 25%;
+		}
+</style>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>  Delta Login</title>
+		<!-- Bootstrap core CSS -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<main>
+			<div class="card w-50">
+				<div class="card-header">
+					<h3>Login :</h3>
+				</div>
+				<form method="post" class="form-group card-body">
+					<label for="username"><strong>Username :</strong></label>
+					<input type="text" class="form-control" name="username" id="username" placeholder="username" maxlength="20" required>
+					<br>
+					<br>
+					<label for="password"><strong>Password :</strong></label>
+					<input type="text" class="form-control" name="password" id="password" placeholder="password" maxlength="30" required>
+					<br>
+					<button type="submit" class="btn btn-primary">Login</button>
+				</form>
+			</div>
+		</main>
+		<!-- Footer -->
+		<footer class="py-5 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">
+					Site crééé par Owain Charlon en 2019
+					<br>
+					Lien du template pour le front: https://startbootstrap.com/templates/blog/
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>
 
 </html>

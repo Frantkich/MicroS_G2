@@ -1,20 +1,25 @@
 package com.microsg2.microsg2client.repository;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.YAuthor;
 
-
 @Repository
 public class AuthorProxy extends GenericProxy {
+	
 	public YAuthor getAuthor(int id) {
 		String getAuthorUrl = props.getApiUrl() + "/author/" + id;
 		ResponseEntity<YAuthor> response = restTemplate.exchange(

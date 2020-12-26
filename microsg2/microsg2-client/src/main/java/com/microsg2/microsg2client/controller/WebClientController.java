@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
 import com.microsg2.microsg2client.model.Article;
 import com.microsg2.microsg2client.model.YAuthor;
 import com.microsg2.microsg2client.model.YCategory;
@@ -26,19 +27,31 @@ public class WebClientController {
 
 	@Autowired
 	private CommentProxy commentProxy;
-	
+
 	@Autowired
-	private AuthorProxy authorProxy;	
+	private AuthorDetails authorDetails;
+
+	@Autowired
+	private AuthorProxy authorProxy;
 
 	@Autowired
 	private CategoryProxy categoryProxy;
 
-		
+
 	@GetMapping(value = {"/"})
-	public String getHomePage(Model model) {		
+	public String getHomePage(Model model) {
 		Iterable<YCategory> categories = categoryProxy.getCategories();
-		model.addAttribute("categories", categories);	
+		model.addAttribute("categories", categories);
 		return "index";
+	}
+
+	@GetMapping(value = {"/logout"})
+	public void logout() {
+	}
+
+	@PostMapping(value = {"/login"})
+	public String login(Model model) {
+		return "login";
 	}
 
 	// ARTICLE
@@ -69,19 +82,19 @@ public class WebClientController {
 		// 	Article article = articleProxy.getArticle(id);
 		// 	model.addAttribute("article", article);
 		// 	return "formUpdateArticle";
-		// }	
+		// }
 		// @GetMapping("/deleteArticle/{id}")
 		// public ModelAndView deleteArticle(@PathVariable int id) {
 		// 	articleProxy.deleteArticle(id);
 		// 	return new ModelAndView("redirect:/");
 		// }
 
-	
+
 	// COMMMENT
 		// @GetMapping("/deleteComment/{id}")
 		// public ModelAndView deleteComment(@PathVariable int id) {
 		// 	commentProxy.deleteComment(id);
-		// 	return "displayArticle";	
+		// 	return "displayArticle";
 		// }
 		// @PostMapping("/saveComment")
 		// public ModelAndView saveComment(@ModelAttribute YComment comment) {
@@ -93,7 +106,7 @@ public class WebClientController {
 		// 	return "displayArticle";
 		// }
 
-	
+
 	// AUTHOR
 		// @GetMapping("/createAuthor")
 		// public String createAuthor(Model model) {
@@ -106,7 +119,7 @@ public class WebClientController {
 		// 	YAuthor author = authorProxy.getAuthor(id);
 		// 	model.addAttribute("author", author);
 		// 	return "formUpdateAuthor";
-		// }	
+		// }
 		// @PostMapping("/saveAuthor")
 		// public ModelAndView saveAuthor(@ModelAttribute YAuthor author) {
 		// 	if(author.getId() == null) {
@@ -119,10 +132,10 @@ public class WebClientController {
 		// @GetMapping("/deleteAuthor/{id}")
 		// public ModelAndView deleteAuthor(@PathVariable int id) {
 		// 	authorProxy.deleteAuthor(id);
-		// 	return new ModelAndView("redirect:/");	
+		// 	return new ModelAndView("redirect:/");
 		// }
 
-		
+
 	//CATEGORY
 		 @GetMapping("/category/{id}")
 		 public String displayCategory(@PathVariable int id, Model model) {
@@ -143,7 +156,7 @@ public class WebClientController {
 		// 	YCategory category = categoryProxy.getCategory(id);
 		// 	model.addAttribute("category", category);
 		// 	return "formUpdateCategory";
-		// }	
+		// }
 		// @PostMapping("/saveCategory")
 		// public ModelAndView saveCategory(@ModelAttribute YCategory category) {
 		// 	if(category.getId() == null) {
