@@ -58,8 +58,11 @@ public class WebClientController {
 		@GetMapping("/article/{id}")
 		public String displayArticle(@PathVariable int id, Model model) {
 		  Article article = articleProxy.getArticle(id);
-		  System.out.println(article.getComments().toString());
 		  model.addAttribute("article", article);
+		  YComment comment = new YComment();
+		  comment.setArticle_id(id);
+		  comment.setAuthor_id(1);
+		  model.addAttribute("comment", comment);
 		  return "displayArticle";
 		}
 		// @GetMapping("/createArticle")
@@ -96,15 +99,15 @@ public class WebClientController {
 		// 	commentProxy.deleteComment(id);
 		// 	return "displayArticle";
 		// }
-		// @PostMapping("/saveComment")
-		// public ModelAndView saveComment(@ModelAttribute YComment comment) {
-		// 	if(author.getId() == null) {
-		// 		authorProxy.createComment(comment);
-		// 	} else {
-		// 		authorProxy.updateComment(comment);
-		// 	}
-		// 	return "displayArticle";
-		// }
+		 @PostMapping("/saveComment")
+		 public ModelAndView saveComment(@ModelAttribute YComment comment) {
+		 	if(comment.getId() == null) {
+		 		commentProxy.createComment(comment);
+		 	} else {
+		 		commentProxy.updateComment(comment);
+		 	}
+		 	return new ModelAndView("redirect:/article/" + comment.getArticle_id());
+		 }
 
 
 	// AUTHOR
