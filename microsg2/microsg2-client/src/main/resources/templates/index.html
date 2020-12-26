@@ -14,6 +14,8 @@
 	</div>
 
 	<a class="createArticle" th:href="@{/createArticle}">create an article</a>
+	
+	<a class="createCatgeory" th:href="@{/createCategory}">create an category</a>
 
 	<div class="categories">
 		<a class="category" th:href="@{/category/{id}(id=${category.id})}" th:utext="${category.name}" th:each="category : ${categories}">...</a>
