@@ -10,9 +10,9 @@ public class Article {
 	private String content;
 	private YAuthor author;
 	private Iterable<YComment> comments;
-	private int categoryId;
+	private Integer categoryId;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -45,7 +45,7 @@ public class Article {
 		return comments;
 	}
 
-	public int getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
 	

@@ -65,27 +65,29 @@ public class WebClientController {
 		  model.addAttribute("comment", comment);
 		  return "displayArticle";
 		}
-		// @GetMapping("/createArticle")
-		// public String createArticle(Model model) {
-		// 	Article article = new Article();
-		// 	model.addAttribute("article", article);
-		// 	return "formCreateArticle";
-		// }
-		// @PostMapping("/saveArticle")
-		// public ModelAndView saveArticle(@ModelAttribute Article article) {
-		// 	if(article.getId() == null) {
-		// 		articleProxy.createArticle(article);
-		// 	} else {
-		// 		articleProxy.updateArticle(article);
-		// 	}
-		// 	return new ModelAndView("redirect:/");
-		// }
-		// @GetMapping("/updateArticle/{id}")
-		// public String updateArticle(@PathVariable int id, Model model) {
-		// 	Article article = articleProxy.getArticle(id);
-		// 	model.addAttribute("article", article);
-		// 	return "formUpdateArticle";
-		// }
+		 @GetMapping("/createArticle")
+		 public String createArticle(Model model) {
+		 	Article article = new Article();
+		 	model.addAttribute("article", article);
+			Iterable<YCategory> categories = categoryProxy.getCategories();
+			model.addAttribute("categories", categories);
+		 	return "formCreateArticle";
+		 }
+		 @PostMapping("/saveArticle")
+		 public ModelAndView saveArticle(@ModelAttribute Article article) {
+			 if(article.getId() == null) {
+		 		articleProxy.createArticle(article);
+		 	} else {
+		 		articleProxy.updateArticle(article);
+		 	}
+		 	return new ModelAndView("redirect:/article/" + article.getId());
+		 }
+		 @GetMapping("/updateArticle/{id}")
+		 public String updateArticle(@PathVariable int id, Model model) {
+		 	Article article = articleProxy.getArticle(id);
+		 	model.addAttribute("article", article);
+		 	return "formUpdateArticle";
+		 }
 		// @GetMapping("/deleteArticle/{id}")
 		// public ModelAndView deleteArticle(@PathVariable int id) {
 		// 	articleProxy.deleteArticle(id);
@@ -103,8 +105,6 @@ public class WebClientController {
 		 public ModelAndView saveComment(@ModelAttribute YComment comment) {
 		 	if(comment.getId() == null) {
 		 		commentProxy.createComment(comment);
-		 	} else {
-		 		commentProxy.updateComment(comment);
 		 	}
 		 	return new ModelAndView("redirect:/article/" + comment.getArticle_id());
 		 }
@@ -148,27 +148,27 @@ public class WebClientController {
 		 	model.addAttribute("articles", articles);
 		 	return "displayCategory";
 		 }	
-		// @GetMapping("/createCategory")
-		// public String createCategory(Model model) {
-		// 	YCategory category = new YCategory();
-		// 	model.addAttribute("category", category);
-		// 	return "formCreateCategory";
-		// }
-		// @GetMapping("/updateCategory/{id}")
-		// public String updateCategory(@PathVariable int id, Model model) {
-		// 	YCategory category = categoryProxy.getCategory(id);
-		// 	model.addAttribute("category", category);
-		// 	return "formUpdateCategory";
-		// }
-		// @PostMapping("/saveCategory")
-		// public ModelAndView saveCategory(@ModelAttribute YCategory category) {
-		// 	if(category.getId() == null) {
-		// 		categoryProxy.createCategory(category);
-		// 	} else {
-		// 		categoryProxy.updateCategory(category);
-		// 	}
-		// 	return new ModelAndView("redirect:/");
-		// }
+		 @GetMapping("/createCategory")
+		 public String createCategory(Model model) {
+		 	YCategory category = new YCategory();
+		 	model.addAttribute("category", category);
+		 	return "formCreateCategory";
+		 }
+		 @GetMapping("/updateCategory/{id}")
+		 public String updateCategory(@PathVariable int id, Model model) {
+		 	YCategory category = categoryProxy.getCategory(id);
+		 	model.addAttribute("category", category);
+		 	return "formUpdateCategory";
+		 }
+		 @PostMapping("/saveCategory")
+		 public ModelAndView saveCategory(@ModelAttribute YCategory category) {
+		 	if(category.getId() == null) {
+		 		categoryProxy.createCategory(category);
+		 	} else {
+		 		categoryProxy.updateCategory(category);
+		 	}
+		 	return new ModelAndView("redirect:/");
+		 }
 		// @GetMapping("/deleteCategory/{id}")
 		// public ModelAndView deleteCategory(@PathVariable int id) {
 		// 	categoryProxy.deleteCategory(id);

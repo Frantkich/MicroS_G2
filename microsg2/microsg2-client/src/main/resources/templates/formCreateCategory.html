@@ -3,13 +3,13 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Delta - Create Category</title>
+	<title>Delta</title>
 </head>
 
 <body>
 	<form method="post" th:action="@{/saveCategory}" th:object="${category}">
 		<label for="nameInput">Name</label>
-		<input type="text" th:field="*{username}" id="userNameInput" />
+		<input type="text" th:field="*{name}" id="userNameInput" />
 
 		<input type="submit" value="Validate" />
 	</form>

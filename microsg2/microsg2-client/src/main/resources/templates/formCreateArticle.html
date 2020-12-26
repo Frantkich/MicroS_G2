@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Delta - Create Article</title>
+	<title>Delta</title>
 </head>
 
 <body>
@@ -12,7 +12,11 @@
 		<input type="text" th:field="*{title}" id="titleInput" />
 
 		<label for="categoryInput">Category</label>
-		<input type="text" th:field="*{category}" id="categoryInput" />
+		<select th:field="*{categoryId}">
+		  <option th:each="category : ${categories}" 
+		          th:value="${category.id}" 
+		          th:text="${category.name}">...</option>
+		</select>
 
 		<label for="contentInput">Content</label>
 		<input type="text" th:field="*{content}" id="contentInput" />
