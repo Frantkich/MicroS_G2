@@ -17,7 +17,7 @@ public class AuthorDetails extends GenericProxy implements UserDetailsService {
 	@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-        String getAuthorUrl = props.getApiUrl() + "/author/authorByUsername/" + username;
+        String getAuthorUrl = props.getApiUrl() + "/authors/username/" + username;
         
         ResponseEntity<YAuthor> response = restTemplate.exchange(
 				getAuthorUrl, 

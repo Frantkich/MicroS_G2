@@ -12,6 +12,8 @@ public class GatewayConfig {
 		return builder.routes()
 				.route(r -> r.path("/author/**")
 						.uri("lb://authorapi"))
+				.route(r -> r.path("/authors/**")
+						.uri("lb://authorapi"))
 				.route(r -> r.path("/category/**")
 						.uri("lb://categoryapi"))
 				.route(r -> r.path("/article/**")

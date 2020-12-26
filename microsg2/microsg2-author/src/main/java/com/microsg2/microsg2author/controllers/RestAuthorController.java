@@ -19,7 +19,7 @@ public class RestAuthorController {
 	@Autowired
 	private AuthorRepository authorRepository;
 	
-	@GetMapping("/author/authorByUsername/{username}")
+	@GetMapping("/authors/username/{username}")
 	public Optional<Author> getAuthorByUsername(@PathVariable("username") String username) {
 		Optional<Author> author = authorRepository.findAuthorWithName(username);
 		System.out.println("Retrieve " + author.get());
