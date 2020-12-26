@@ -64,6 +64,16 @@ public class ArticleProxy extends GenericProxy {
 		return response.getBody();
 	}
 	
+	public Iterable<Article> getCategory(Integer id) {
+		String getArticlesUrl = props.getApiUrl() + "/article/category/" + id;
+		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
+				getArticlesUrl, 
+				HttpMethod.GET, 
+				null, 
+				new ParameterizedTypeReference<Iterable<Article>>() {});
+		return response.getBody();
+	}
+	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(IllegalStateException ex) {
 		System.out.println("From fallback method IllegalState : " + ex.getMessage());

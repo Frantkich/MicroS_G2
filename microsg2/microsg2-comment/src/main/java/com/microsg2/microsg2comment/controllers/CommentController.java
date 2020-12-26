@@ -1,6 +1,5 @@
 package com.microsg2.microsg2comment.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +23,20 @@ public class CommentController {
 	@GetMapping("/comment")
 	public Iterable<Comment> getComments() {		
 		Iterable<Comment> comments = commentRepository.findAll();	
-		System.out.println("trace getComments");
 		return comments;		
 	}
-	
+
 	@GetMapping("/comment/{id}")
-	public Optional<List<Comment>> getComment(@PathVariable("id") int id) 
+	public Optional<Comment> getComment(@PathVariable("id") int id) 
 			throws InterruptedException {
-		Optional<List<Comment>> comments = commentRepository.allCommentByArticle(id);
+		Optional<Comment> comments = commentRepository.findById(id);
+		return comments;		
+	}
+
+	@GetMapping("/comment/article/{id}")
+	public Optional<Iterable<Comment>> getArticle(@PathVariable("id") int id) 
+			throws InterruptedException {
+		Optional<Iterable<Comment>> comments = commentRepository.getArticle(id);
 		return comments;		
 	}
 	

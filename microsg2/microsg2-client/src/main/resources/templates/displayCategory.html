@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Delta</title>
+</head>
+
+<body>
+  <div class="nav">
+    <h1 th:utext="${category.name}">...</h1>
+  </div>
+
+  <div class="articles">
+      <div class="article" th:each="article : ${articles}">
+        <hr>
+        <div class="articleHeader">
+        	<a th:href="@{/article/{id}(id=${article.id})}">
+          		<h3 th:utext="${article.title}">...</h3>
+        	</a>
+        	<p class="date" th:utext="${article.date}">../../....</p>
+            <p class="author" th:utext="${article.author.username}">...</p>
+        </div>
+        <div class="previewContent">
+          <p th:utext="${article.content}">...</p>
+        </div>
+      </div>
+  </div>
+</body>
+
+</html>

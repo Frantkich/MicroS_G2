@@ -42,13 +42,13 @@ public class WebClientController {
 	}
 
 	// ARTICLE
-		// @GetMapping("/article/{id}")
-		// public String displayArticle(@PathVariable int id, Model model) {
-		//   Article article = articleProxy.getArticle(id);
-		//   model.addAttribute("article", article);
-		//   YComment comment = new YComment();
-		//   return "displayArticle";
-		// }
+		@GetMapping("/article/{id}")
+		public String displayArticle(@PathVariable int id, Model model) {
+		  Article article = articleProxy.getArticle(id);
+		  System.out.println(article.getComments().toString());
+		  model.addAttribute("article", article);
+		  return "displayArticle";
+		}
 		// @GetMapping("/createArticle")
 		// public String createArticle(Model model) {
 		// 	Article article = new Article();
@@ -124,7 +124,14 @@ public class WebClientController {
 
 		
 	//CATEGORY
-z
+		 @GetMapping("/category/{id}")
+		 public String displayCategory(@PathVariable int id, Model model) {
+		 	YCategory category = categoryProxy.getCategory(id);
+		 	model.addAttribute("category", category);
+			Iterable<Article> articles = articleProxy.getCategory(id);
+		 	model.addAttribute("articles", articles);
+		 	return "displayCategory";
+		 }	
 		// @GetMapping("/createCategory")
 		// public String createCategory(Model model) {
 		// 	YCategory category = new YCategory();

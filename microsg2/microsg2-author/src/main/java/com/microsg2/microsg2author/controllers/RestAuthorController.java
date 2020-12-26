@@ -30,7 +30,6 @@ public class RestAuthorController {
 	public Optional<Author> getAuthor(@PathVariable("id") int id) 
 			throws InterruptedException {
 		Optional<Author> author = authorRepository.findById(id);		
-		System.out.println("Retrieve " + author.get());
 		return author;		
 	}
 	

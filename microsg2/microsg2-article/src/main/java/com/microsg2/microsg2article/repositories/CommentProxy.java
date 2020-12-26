@@ -19,10 +19,9 @@ public class CommentProxy {
 	@Autowired
 	private CustomProperties props;
 	
-	public YComment[] getCommentsByArticle(int id) {
-		String getCommentUrl = props.getApiUrl() +  "/comment/" + id;
+	public YComment[] getComments(int id) {
+		String getCommentUrl = props.getApiUrl() +  "/comment/article/" + id;
 		ResponseEntity<YComment[]> response = restTemplate.exchange(getCommentUrl, HttpMethod.GET, null, YComment[].class);
-		
 		return response.getBody();
 	}
 	

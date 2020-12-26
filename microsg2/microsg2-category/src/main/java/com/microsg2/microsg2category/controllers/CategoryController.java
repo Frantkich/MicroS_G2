@@ -23,7 +23,6 @@ public class CategoryController {
 	@GetMapping("/category")
 	public Iterable<Category> getCategories() {		
 		Iterable<Category> categories = categoryRepository.findAll();	
-		System.out.println("trace getCategories");
 		return categories;		
 	}
 	
@@ -31,7 +30,6 @@ public class CategoryController {
 	public Optional<Category> getCategory(@PathVariable("id") int id) 
 			throws InterruptedException {
 		Optional<Category> category = categoryRepository.findById(id);		
-		System.out.println("Retrieve " + category.get().getName());
 		return category;		
 	}
 	

@@ -8,7 +8,8 @@ public class Article {
 	private String title;
 	private Date date;
 	private String content;
-	private int authorId;
+	private YAuthor author;
+	private Iterable<YComment> comments;
 	private int categoryId;
 
 	public int getId() {
@@ -36,16 +37,19 @@ public class Article {
 		this.content = content;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public YAuthor getAuthor() {
+		return author;
+	}
+
+	public Iterable<YComment> getComments() {
+		return comments;
 	}
 
 	public int getCategoryId() {
 		return categoryId;
 	}
+	
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-	
-	
 }

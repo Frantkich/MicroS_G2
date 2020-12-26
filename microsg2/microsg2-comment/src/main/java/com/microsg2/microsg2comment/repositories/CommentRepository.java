@@ -1,6 +1,5 @@
 package com.microsg2.microsg2comment.repositories;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -12,9 +11,8 @@ import com.microsg2.microsg2comment.models.Comment;
 
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Integer>{
-
 	@Query(
 			  value = "SELECT * FROM comment WHERE comment.article_id = :id", 
 			  nativeQuery = true)
-	Optional<List<Comment>> allCommentByArticle(@Param("id") int id);
+	Optional<Iterable<Comment>> getArticle(@Param("id") int id);
 }

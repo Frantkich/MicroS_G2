@@ -27,8 +27,20 @@ public class ArticleService {
 	}
 	
 	public Iterable<ArticleR> getArticles() {
-		
 		Iterable<Article> articles = articleRepository.findAll();
+		ArrayList<ArticleR> articleRs = new ArrayList<ArticleR>();
+		
+		Iterator<Article> iterator = articles.iterator();
+		while(iterator.hasNext()) {
+			Article p = iterator.next();
+			ArticleR articleR = articleTransformer.transform(p);
+			articleRs.add(articleR);
+		}
+		return articleRs;		
+	}
+
+	public Iterable<ArticleR> getCategory(int id) {
+		Iterable<Article> articles = articleRepository.getCategory(id);
 		ArrayList<ArticleR> articleRs = new ArrayList<ArticleR>();
 		
 		Iterator<Article> iterator = articles.iterator();

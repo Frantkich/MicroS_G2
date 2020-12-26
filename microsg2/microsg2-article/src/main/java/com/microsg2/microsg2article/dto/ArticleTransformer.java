@@ -33,7 +33,10 @@ public class ArticleTransformer {
 		articleR.setAuthor(author);
 		YCategory category = categoryProxy.getCategory(a.getCategoryId());
 		articleR.setCategory(category);
-		YComment[] comments = commentProxy.getCommentsByArticle(articleR.getId());
+		YComment[] comments = commentProxy.getComments(articleR.getId());
+		for (YComment yComment : comments) {
+			yComment.setAuthor(authorProxy.getAuthor(a.getAuthorId()));
+		}
 		articleR.setComments(comments);
 		
 		

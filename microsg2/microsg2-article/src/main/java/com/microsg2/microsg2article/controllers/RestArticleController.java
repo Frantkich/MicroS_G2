@@ -24,4 +24,9 @@ public class RestArticleController {
 		return articleService.getArticles();
 	}
 	
+	@GetMapping("/article/category/{id}")
+	public Iterable<ArticleR> getCategory(@PathVariable("id") int id) {
+		return articleService.getCategory(id);
+	}
+	
 }

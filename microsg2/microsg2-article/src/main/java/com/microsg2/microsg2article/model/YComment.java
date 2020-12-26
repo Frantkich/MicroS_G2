@@ -3,13 +3,14 @@ package com.microsg2.microsg2article.model;
 import java.sql.Date;
 
 public class YComment {
-	private int id;
+	
+	private Integer id;
 	private Date date;
 	private String content;
-	private int author_id;
-	private int article_id;
+	private Integer article_id;
+	private YAuthor author;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -27,16 +28,16 @@ public class YComment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getAuthor_id() {
-		return author_id;
-	}
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
-	}
-	public int getArticle_id() {
+	public Integer getArticle_id() {
 		return article_id;
 	}
 	public void setArticle_id(int article_id) {
 		this.article_id = article_id;
+	}
+	public YAuthor getAuthor() {
+		return author;
+	}
+	public void setAuthor(YAuthor author) {
+		this.author = author;
 	}
 }

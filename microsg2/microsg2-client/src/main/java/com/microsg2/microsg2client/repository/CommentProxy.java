@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.microsg2.microsg2client.model.YComment;
 
-
 @Repository
 public class CommentProxy extends GenericProxy {
 	public YComment getComment(int id) {
