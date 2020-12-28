@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.microsg2.microsg2client.daoAuthProvider.AppAuthProvider;
 import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
@@ -46,30 +47,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(getProvider())
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/loginTest")
+                .defaultSuccessUrl("/")
                 //.failureUrl("/login.html?error=true")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessHandler(new AuthentificationLogoutSuccessHandler())
+                .logoutSuccessUrl("/")  
                 .invalidateHttpSession(true)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/article").authenticated()
                 .anyRequest().permitAll();
     }
-    
-    private class AuthentificationLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
-        @Override
-        public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
-                                    Authentication authentication) throws IOException, ServletException {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-    }
-    
+
     @Bean
     public AuthenticationProvider getProvider() {
         AppAuthProvider provider = new AppAuthProvider();

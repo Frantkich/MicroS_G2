@@ -29,7 +29,7 @@ public class RestArticleController {
 	}
 	
 	@GetMapping("/article")
-	public Iterable<ArticleR> getAticles() {
+	public Iterable<ArticleR> getArticles() {
 		return articleService.getArticles();
 	}
 	

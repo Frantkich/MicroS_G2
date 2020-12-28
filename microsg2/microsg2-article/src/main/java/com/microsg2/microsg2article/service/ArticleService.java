@@ -31,8 +31,11 @@ public class ArticleService {
 		ArrayList<ArticleR> articleRs = new ArrayList<ArticleR>();
 		
 		Iterator<Article> iterator = articles.iterator();
+		System.out.println(iterator);
 		while(iterator.hasNext()) {
+			System.out.println("dans le while");
 			Article p = iterator.next();
+			System.out.println(p);
 			ArticleR articleR = articleTransformer.transform(p);
 			articleRs.add(articleR);
 		}
