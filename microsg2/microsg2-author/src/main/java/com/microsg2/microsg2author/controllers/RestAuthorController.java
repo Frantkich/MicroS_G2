@@ -1,8 +1,10 @@
 package com.microsg2.microsg2author.controllers;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +21,9 @@ public class RestAuthorController {
 	@Autowired
 	private AuthorRepository authorRepository;
 	
+	
 	@GetMapping("/authors/username/{username}")
-	public Optional<Author> getAuthorByUsername(@PathVariable("username") String username) {
+	public Optional<Author> getAuthorByUsername(@PathVariable("username") String username) throws InterruptedException {
 		Optional<Author> author = authorRepository.findAuthorWithName(username);
 		System.out.println("Retrieve " + author.get());
 		return author;		
