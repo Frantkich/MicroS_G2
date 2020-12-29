@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
@@ -16,24 +20,24 @@ import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-    
+
+
 	@Bean
 	public PasswordEncoder encoder() {
 	    return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public AuthorDetails authorDetailsService() {
 		return new AuthorDetails();
 	}
-	
+
 	@Override
 	  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	    auth.userDetailsService(authorDetailsService()).passwordEncoder(encoder());
 	    System.out.println("secu1");
 	  }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
@@ -44,19 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/loginTest")
-                .failureUrl("/loginFailed")
+                .defaultSuccessUrl("/")
+                //.failureUrl("/login.html?error=true")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/article").authenticated()
                 .anyRequest().permitAll();
     }
-    
 }

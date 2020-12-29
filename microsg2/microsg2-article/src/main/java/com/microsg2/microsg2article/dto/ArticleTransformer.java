@@ -26,18 +26,23 @@ public class ArticleTransformer {
 	public ArticleR transform(Article a) {
 		ArticleR articleR = new ArticleR();
 		articleR.setId(a.getId());
+		System.out.println(a.getId());
 		articleR.setTitle(a.getTitle());
 		articleR.setDate(a.getDate());
 		articleR.setContent(a.getContent());
 		YAuthor author = authorProxy.getAuthor(a.getAuthorId());
 		articleR.setAuthor(author);
+		System.out.println("author setted");
 		YCategory category = categoryProxy.getCategory(a.getCategoryId());
 		articleR.setCategory(category);
+		System.out.println("category setted");
 		YComment[] comments = commentProxy.getComments(articleR.getId());
 		for (YComment yComment : comments) {
 			yComment.setAuthor(authorProxy.getAuthor(a.getAuthorId()));
 		}
 		articleR.setComments(comments);
+
+		System.out.println("comments setted");
 		
 		
 		return articleR;

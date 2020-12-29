@@ -44,6 +44,8 @@ public class WebClientController {
 	public String getHomePage(Model model) {
 		Iterable<YCategory> categories = categoryProxy.getCategories();
 		model.addAttribute("categories", categories);
+		Iterable<Article> articles = articleProxy.getArticles();
+	 	model.addAttribute("articles", articles);
 		return "index";
 	}
 
