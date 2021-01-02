@@ -45,6 +45,9 @@ public class RestAuthorController {
 	
 	@PostMapping("/author")
 	public Author createAuthor(@RequestBody Author author) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedpassword = passwordEncoder.encode(author.getPassword());
+		author.setPassword(encodedpassword);
 		author = authorRepository.save(author);		
 		return author;
 	}
