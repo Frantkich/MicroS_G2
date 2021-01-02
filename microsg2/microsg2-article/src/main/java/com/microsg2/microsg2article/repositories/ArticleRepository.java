@@ -10,6 +10,11 @@ import com.microsg2.microsg2article.model.Article;
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Integer> {
 	@Query(value = "SELECT * FROM article WHERE article.category_id = :id", 
+			   nativeQuery = true)
+		Iterable<Article> getCategory(@Param("id") int id);
+
+	@Query(value = "SELECT * FROM article order by id desc limit :nb", 
 		   nativeQuery = true)
-	Iterable<Article> getCategory(@Param("id") int id);
+	Iterable<Article> last(@Param("nb") int nb);
+
 }

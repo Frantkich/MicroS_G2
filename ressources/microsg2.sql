@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `article_id` int(11) DEFAULT NULL,
   `author_id` int(11) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `date` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=latin1;
 

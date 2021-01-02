@@ -1,5 +1,6 @@
 package com.microsg2.microsg2comment.controllers;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,8 @@ public class CommentController {
 	
 	@PostMapping("/comment")
 	public Comment createComment(@RequestBody Comment comment) {
+		Date date = new Date();
+		comment.setDate(date);
 		comment = commentRepository.save(comment);		
 		return comment;
 	}

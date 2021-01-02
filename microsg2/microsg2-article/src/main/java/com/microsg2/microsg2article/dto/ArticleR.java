@@ -1,6 +1,6 @@
 package com.microsg2.microsg2article.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.microsg2.microsg2article.model.YAuthor;
 import com.microsg2.microsg2article.model.YCategory;

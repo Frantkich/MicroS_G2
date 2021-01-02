@@ -9,6 +9,7 @@ public class Article {
 	private Date date;
 	private String content;
 	private YAuthor author;
+	private Integer authorId;
 	private Iterable<YComment> comments;
 	private Integer categoryId;
 
@@ -41,6 +42,14 @@ public class Article {
 		return author;
 	}
 
+	public Integer getAuhtorId() {
+		return authorId;
+	}
+
+	public void setAuhtorId(Integer auhtorId) {
+		this.authorId = auhtorId;
+	}
+
 	public Iterable<YComment> getComments() {
 		return comments;
 	}
@@ -52,4 +61,6 @@ public class Article {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	
 }
