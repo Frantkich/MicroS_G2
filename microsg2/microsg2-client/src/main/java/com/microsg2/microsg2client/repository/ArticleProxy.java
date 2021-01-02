@@ -21,6 +21,36 @@ public class ArticleProxy extends GenericProxy {
 			getArticleUrl, HttpMethod.GET, null, Article.class);
 		return response.getBody();
 	}
+
+	public Iterable<Article> getArticles() {
+		String getArticlesUrl = props.getApiUrl() + "/article";
+		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
+				getArticlesUrl, 
+				HttpMethod.GET, 
+				null, 
+				new ParameterizedTypeReference<Iterable<Article>>() {});
+		return response.getBody();
+	}
+	
+	public Iterable<Article> getCategory(Integer id) {
+		String getArticlesUrl = props.getApiUrl() + "/article/category/" + id;
+		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
+				getArticlesUrl, 
+				HttpMethod.GET, 
+				null, 
+				new ParameterizedTypeReference<Iterable<Article>>() {});
+		return response.getBody();
+	}
+	
+	public Iterable<Article> last(Integer nb) {
+		String getArticlesUrl = props.getApiUrl() + "/article/last/" + nb;
+		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
+				getArticlesUrl, 
+				HttpMethod.GET, 
+				null, 
+				new ParameterizedTypeReference<Iterable<Article>>() {});
+		return response.getBody();
+	}
 	
 	public Article createArticle(Article article) {
 		String createArticlesUrl = props.getApiUrl() + "/article";
@@ -54,26 +84,6 @@ public class ArticleProxy extends GenericProxy {
 		return response.getBody();
 	}
 
-
-	public Iterable<Article> getArticles() {
-		String getArticlesUrl = props.getApiUrl() + "/article";
-		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
-				getArticlesUrl, 
-				HttpMethod.GET, 
-				null, 
-				new ParameterizedTypeReference<Iterable<Article>>() {});
-		return response.getBody();
-	}
-	
-	public Iterable<Article> getCategory(Integer id) {
-		String getArticlesUrl = props.getApiUrl() + "/article/category/" + id;
-		ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
-				getArticlesUrl, 
-				HttpMethod.GET, 
-				null, 
-				new ParameterizedTypeReference<Iterable<Article>>() {});
-		return response.getBody();
-	}
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(IllegalStateException ex) {
@@ -91,5 +101,6 @@ public class ArticleProxy extends GenericProxy {
 	private Iterable<Article> fallback(HttpServerErrorException ex) {
 		System.out.println("From fallback method HttpServerErrorException : " + ex.getMessage());
 		return new ArrayList<Article>();
-	}	
+	}
+
 }

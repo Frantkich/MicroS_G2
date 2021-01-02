@@ -32,19 +32,15 @@ public class ArticleTransformer {
 		articleR.setContent(a.getContent());
 		YAuthor author = authorProxy.getAuthor(a.getAuthorId());
 		articleR.setAuthor(author);
-		System.out.println("author setted");
 		YCategory category = categoryProxy.getCategory(a.getCategoryId());
 		articleR.setCategory(category);
-		System.out.println("category setted");
 		YComment[] comments = commentProxy.getComments(articleR.getId());
-		for (YComment yComment : comments) {
-			yComment.setAuthor(authorProxy.getAuthor(a.getAuthorId()));
+		if (comments != null) {
+			for (YComment yComment : comments) {
+				yComment.setAuthor(authorProxy.getAuthor(a.getAuthorId()));
+			}
+			articleR.setComments(comments);
 		}
-		articleR.setComments(comments);
-
-		System.out.println("comments setted");
-		
-		
 		return articleR;
 	}
 	

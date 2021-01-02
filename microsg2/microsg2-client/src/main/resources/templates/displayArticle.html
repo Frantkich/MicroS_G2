@@ -43,6 +43,7 @@
 
     <div class="comments">
       <div class="comment" th:each="comment : ${article.comments}">
+        <hr>
         <div class="commentHeader">
           <div class="author">
             <p th:utext="${comment.author.username}">...</p>

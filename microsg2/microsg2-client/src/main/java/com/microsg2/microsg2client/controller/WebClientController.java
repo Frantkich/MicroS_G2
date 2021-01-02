@@ -44,7 +44,7 @@ public class WebClientController {
 	public String getHomePage(Model model) {
 		Iterable<YCategory> categories = categoryProxy.getCategories();
 		model.addAttribute("categories", categories);
-		Iterable<Article> articles = articleProxy.getArticles();
+		Iterable<Article> articles = articleProxy.last(10);
 	 	model.addAttribute("articles", articles);
 		return "index";
 	}
@@ -82,17 +82,21 @@ public class WebClientController {
 		 	model.addAttribute("article", article);
 			Iterable<YCategory> categories = categoryProxy.getCategories();
 			model.addAttribute("categories", categories);
+			YAuthor author = new YAuthor();
+			model.addAttribute("author", author);
+			
 		 	return "formCreateArticle";
 		 }
 		 @PostMapping("/saveArticle")
-		 public ModelAndView saveArticle(@ModelAttribute Article article) {
-			 if(article.getId() == null) {
+		 public String saveArticle(@ModelAttribute Article article) {			
+			if(article.getId() == null) {
 		 		articleProxy.createArticle(article);
 		 	} else {
 		 		articleProxy.updateArticle(article);
 		 	}
-		 	return new ModelAndView("redirect:/article/" + article.getId());
+		 	return "index";
 		 }
+		 
 		 @GetMapping("/updateArticle/{id}")
 		 public String updateArticle(@PathVariable int id, Model model) {
 		 	Article article = articleProxy.getArticle(id);
