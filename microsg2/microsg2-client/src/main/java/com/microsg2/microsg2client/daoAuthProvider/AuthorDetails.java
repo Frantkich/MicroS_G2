@@ -2,6 +2,7 @@ package com.microsg2.microsg2client.daoAuthProvider;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,17 +19,25 @@ public class AuthorDetails extends GenericProxy implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
         String getAuthorUrl = props.getApiUrl() + "/authors/username/" + username;
-        
+        System.out.println(getAuthorUrl);
         ResponseEntity<YAuthor> response = restTemplate.exchange(
 				getAuthorUrl, 
 				HttpMethod.GET, 
 				null, 
 				YAuthor.class);
+        System.out.println("passed");
         YAuthor author = response.getBody();
-        if ( author == null) {
-        	throw new UsernameNotFoundException("Author not found");
+        UserBuilder builder = null;
+        if ( author != null) {
+        	builder = org.springframework.security.core.userdetails.User.withUsername(author.getUsername());
+            builder.password(author.getPassword());
+            builder.roles(author.getRole());
+            System.out.println("passed");
         }
-        
-		return new org.springframework.security.core.userdetails.User(author.getUsername(), author.getPassword(), author.getAuthorities());
+        else {
+        	throw new UsernameNotFoundException("Author not found.");
+        }
+        return builder.build();
     }
+
 }

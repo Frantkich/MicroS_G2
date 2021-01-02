@@ -1,5 +1,12 @@
 version: '3'
 services:
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./resources/docker-sql/init.sql:/docker-entrypoint-initdb.d/init.sql
   Eureka-Server:
     build: ms-server/.
     ports:
