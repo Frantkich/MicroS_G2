@@ -29,14 +29,17 @@
   </div>
 
   <div class="commentSection">
-    <div class="createComment">
-      <form action="#" th:action="@{/saveComment}" th:object="${comment}" method="post">
-        <input type="text" th:field="*{content}" id="contentInput"/>
-        <input type="hidden" th:field="*{article_id}"/>
-        <input type="hidden" th:field="*{author_id}"/> <!-- INSERT USER HERE  -->
-        <input type="submit" value="Validate" />
-      </form>
+  	<div sec:authorize="isAuthenticated()">
+       <div class="createComment">
+      	  <form action="#" th:action="@{/saveComment}" th:object="${comment}" method="post">
+        	<input type="text" th:field="*{content}" id="contentInput"/>
+       		<input type="hidden" th:field="*{article_id}"/>
+        	<input type="hidden" th:field="*{author_id}"/> <!-- INSERT USER HERE  -->
+        	<input type="submit" value="Validate" />
+      	</form>
     </div>
+    </div>
+    
 
     <div class="comments">
       <div class="comment" th:each="comment : ${article.comments}">
