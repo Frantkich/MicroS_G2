@@ -20,8 +20,6 @@ import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-
 	@Bean
 	public PasswordEncoder encoder() {
 	    return new BCryptPasswordEncoder();

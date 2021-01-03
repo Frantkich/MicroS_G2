@@ -21,6 +21,8 @@ import com.microsg2.microsg2client.repository.CategoryProxy;
 import com.microsg2.microsg2client.repository.AuthorProxy;
 import com.microsg2.microsg2client.repository.CommentProxy;
 
+import feign.Request;
+
 @Controller
 public class WebClientController {
 
@@ -61,19 +63,19 @@ public class WebClientController {
 	//Test de récuperation suite à connexion.
 	 @GetMapping("/loginTest")
 	 public String currentUserName(Principal principal) {
-		 System.out.println(principal.getName());
 		 return "loginTest";
 	 }
 
 	// ARTICLE
 		@GetMapping("/article/{id}")
-		public String displayArticle(@PathVariable int id, Model model) {
+		public String displayArticle(@PathVariable int id, Model model, Principal principal) {
 		  Article article = articleProxy.getArticle(id);
 		  model.addAttribute("article", article);
 		  YComment comment = new YComment();
-		  comment.setArticle_id(id);
 		  comment.setAuthor_id(1);
 		  model.addAttribute("comment", comment);
+//		  System.out.println(principal.getName());
+		  model.addAttribute("userId", 123456879);
 		  return "displayArticle";
 		}
 		 @GetMapping("/createArticle")
@@ -126,32 +128,32 @@ public class WebClientController {
 
 
 	// AUTHOR
-		// @GetMapping("/createAuthor")
-		// public String createAuthor(Model model) {
-		// 	YAuthor author = new YAuthor();
-		// 	model.addAttribute("author", author);
-		// 	return "formCreateAuthor";
-		// }
-		// @GetMapping("/updateAuthor/{id}")
-		// public String updateAuthor(@PathVariable int id, Model model) {
-		// 	YAuthor author = authorProxy.getAuthor(id);
-		// 	model.addAttribute("author", author);
-		// 	return "formUpdateAuthor";
-		// }
-		// @PostMapping("/saveAuthor")
-		// public ModelAndView saveAuthor(@ModelAttribute YAuthor author) {
-		// 	if(author.getId() == null) {
-		// 		authorProxy.createAuthor(author);
-		// 	} else {
-		// 		authorProxy.updateAuthor(author);
-		// 	}
-		// 	return new ModelAndView("redirect:/");
-		// }
-		// @GetMapping("/deleteAuthor/{id}")
-		// public ModelAndView deleteAuthor(@PathVariable int id) {
-		// 	authorProxy.deleteAuthor(id);
-		// 	return new ModelAndView("redirect:/");
-		// }
+		 @GetMapping("/createAuthor")
+		 public String createAuthor(Model model) {
+		 	YAuthor author = new YAuthor();
+		 	model.addAttribute("author", author);
+		 	return "formCreateAuthor";
+		 }
+		 @GetMapping("/updateAuthor/{id}")
+		 public String updateAuthor(@PathVariable int id, Model model) {
+		 	YAuthor author = authorProxy.getAuthor(id);
+		 	model.addAttribute("author", author);
+		 	return "formUpdateAuthor";
+		 }
+		 @PostMapping("/saveAuthor")
+		 public ModelAndView saveAuthor(@ModelAttribute YAuthor author) {
+		 	if(author.getId() == null) {
+		 		authorProxy.createAuthor(author);
+		 	} else {
+		 		authorProxy.updateAuthor(author);
+		 	}
+		 	return new ModelAndView("redirect:/");
+		 }
+		 @GetMapping("/deleteAuthor/{id}")
+		 public ModelAndView deleteAuthor(@PathVariable int id) {
+		 	authorProxy.deleteAuthor(id);
+		 	return new ModelAndView("redirect:/");
+		 }
 
 
 	//CATEGORY

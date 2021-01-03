@@ -28,6 +28,8 @@
     </div>
   </div>
 
+  <span th:text ="${userId}"></span>
+
   <div class="commentSection">
     <div class="createComment">
       <form action="#" th:action="@{/saveComment}" th:object="${comment}" method="post">

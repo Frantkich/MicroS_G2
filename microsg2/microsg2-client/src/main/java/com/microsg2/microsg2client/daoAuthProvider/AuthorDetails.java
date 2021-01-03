@@ -13,26 +13,21 @@ import com.microsg2.microsg2client.repository.GenericProxy;
 
 @Service
 public class AuthorDetails extends GenericProxy implements UserDetailsService {
-	
-	
 	@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
         String getAuthorUrl = props.getApiUrl() + "/authors/username/" + username;
-        System.out.println(getAuthorUrl);
         ResponseEntity<YAuthor> response = restTemplate.exchange(
 				getAuthorUrl, 
 				HttpMethod.GET, 
 				null, 
 				YAuthor.class);
-        System.out.println("passed");
         YAuthor author = response.getBody();
         UserBuilder builder = null;
         if ( author != null) {
         	builder = org.springframework.security.core.userdetails.User.withUsername(author.getUsername());
             builder.password(author.getPassword());
             builder.roles(author.getRole());
-            System.out.println("passed");
+            builder.username(author.getId().toString());
         }
         else {
         	throw new UsernameNotFoundException("Author not found.");
