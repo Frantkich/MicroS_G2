@@ -29,10 +29,10 @@ public class Article {
 	private String content;
 	
 	@Column(name="author_id")
-	private int authorId;
+	private int author_id;
 	
 	@Column(name="category_id")
-	private int categoryId;
+	private int category_id;
 	
 
 	public int getId() {
@@ -68,19 +68,19 @@ public class Article {
 	}
 
 	public int getAuthorId() {
-		return authorId;
+		return author_id;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setAuthorId(int author_id) {
+		this.author_id = author_id;
 	}
 
 	public int getCategoryId() {
-		return categoryId;
+		return category_id;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryId(int category_id) {
+		this.category_id = category_id;
 	}
 	
 }

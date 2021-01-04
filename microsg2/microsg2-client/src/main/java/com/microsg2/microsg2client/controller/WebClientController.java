@@ -21,8 +21,6 @@ import com.microsg2.microsg2client.repository.CategoryProxy;
 import com.microsg2.microsg2client.repository.AuthorProxy;
 import com.microsg2.microsg2client.repository.CommentProxy;
 
-import feign.Request;
-
 @Controller
 public class WebClientController {
 
@@ -72,20 +70,18 @@ public class WebClientController {
 		  Article article = articleProxy.getArticle(id);
 		  model.addAttribute("article", article);
 		  YComment comment = new YComment();
-		  comment.setAuthor_id(1);
+		  comment.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
+		  comment.setArticle_id(id);
 		  model.addAttribute("comment", comment);
-//		  System.out.println(principal.getName());
-		  model.addAttribute("userId", 123456879);
 		  return "displayArticle";
 		}
 		 @GetMapping("/createArticle")
-		 public String createArticle(Model model) {
+		 public String createArticle(Model model, Principal principal) {
 		 	Article article = new Article();
+		 	article.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
 		 	model.addAttribute("article", article);
 			Iterable<YCategory> categories = categoryProxy.getCategories();
 			model.addAttribute("categories", categories);
-			YAuthor author = new YAuthor();
-			model.addAttribute("author", author);
 			
 		 	return "formCreateArticle";
 		 }

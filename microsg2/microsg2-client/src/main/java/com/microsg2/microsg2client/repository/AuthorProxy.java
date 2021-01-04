@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
@@ -72,7 +73,18 @@ public class AuthorProxy extends GenericProxy {
 				new ParameterizedTypeReference<Iterable<YAuthor>>() {});
 		return response.getBody();
 	}
-	
+
+    public Integer getIdByUsername(String username) {
+        String getAuthorUrl = props.getApiUrl() + "/authors/username/" + username;
+        ResponseEntity<YAuthor> response = restTemplate.exchange(
+				getAuthorUrl, 
+				HttpMethod.GET, 
+				null, 
+				YAuthor.class);
+        YAuthor author = response.getBody();
+        return author.getId();
+    }
+    
 	@SuppressWarnings("unused")
 	private Iterable<YAuthor> fallback(IllegalStateException ex) {
 		System.out.println("From fallback method IllegalState : " + ex.getMessage());

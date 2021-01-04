@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delta - Update Article</title>
+</head>
+
+<body>
+	<form method="post" th:action="@{/saveArticle}" th:object="${article}">
+		<input type="hidden" th:field="*{id}" />
+
+		<label for="titleInput">Title</label>
+		<input type="text" th:field="*{title}" id="titleInput" />
+
+		<label for="categoryInput">Category</label>
+		<input type="text" th:field="*{category}" id="categoryInput" />
+
+		<label for="contentInput">Content</label>
+		<input type="text" th:field="*{content}" id="contentInput" />
+
+		<input type="submit" value="Validate" />
+	</form>
+</body>
+
+</html>

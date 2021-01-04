@@ -11,7 +11,6 @@ import com.microsg2.microsg2author.models.Author;
 
 @Repository
 public interface AuthorRepository extends CrudRepository<Author, Integer>  {
-	
 	@Query(
 			  value = "SELECT * FROM author WHERE author.username = :username", 
 			  nativeQuery = true)

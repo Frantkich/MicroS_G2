@@ -8,6 +8,7 @@ public class YComment {
 	private Date date;
 	private String content;
 	private Integer article_id;
+	private Integer author_id;
 	private YAuthor author;
 	
 	public Integer getId() {
@@ -39,5 +40,11 @@ public class YComment {
 	}
 	public void setAuthor(YAuthor author) {
 		this.author = author;
+	}
+	public Integer getAuthor_id() {
+		return author_id;
+	}
+	public void setAuthor_id(Integer author_id) {
+		this.author_id = author_id;
 	}
 }

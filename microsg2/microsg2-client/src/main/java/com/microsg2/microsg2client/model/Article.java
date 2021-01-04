@@ -9,9 +9,9 @@ public class Article {
 	private Date date;
 	private String content;
 	private YAuthor author;
-	private Integer authorId;
+	private Integer author_id;
 	private Iterable<YComment> comments;
-	private Integer categoryId;
+	private Integer category_id;
 
 	public Integer getId() {
 		return id;
@@ -42,25 +42,23 @@ public class Article {
 		return author;
 	}
 
-	public Integer getAuhtorId() {
-		return authorId;
-	}
-
-	public void setAuhtorId(Integer auhtorId) {
-		this.authorId = auhtorId;
-	}
-
 	public Iterable<YComment> getComments() {
 		return comments;
 	}
 
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-	
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public Integer getAuthor_id() {
+		return author_id;
 	}
 
-	
+	public void setAuthor_id(Integer author_id) {
+		this.author_id = author_id;
+	}
+
+	public Integer getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Integer category_id) {
+		this.category_id = category_id;
+	}
 }

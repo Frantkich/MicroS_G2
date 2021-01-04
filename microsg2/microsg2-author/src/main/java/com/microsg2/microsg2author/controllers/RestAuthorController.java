@@ -25,14 +25,12 @@ public class RestAuthorController {
 	@GetMapping("/authors/username/{username}")
 	public Optional<Author> getAuthorByUsername(@PathVariable("username") String username) throws InterruptedException {
 		Optional<Author> author = authorRepository.findAuthorWithName(username);
-		System.out.println("Retrieve " + author.get());
 		return author;		
 	}
 	
 	@GetMapping("/authors")
 	public Iterable<Author> getAuthors() {		
 		Iterable<Author> authors = authorRepository.findAll();	
-		System.out.println("trace getAuthor");
 		return authors;		
 	}
 	

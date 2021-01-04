@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delta - Update Category</title>
+</head>
+
+<body>
+	<form method="post" th:action="@{/saveCategory}" th:object="${category}">
+		<input type="hidden" th:field="*{id}" />
+
+		<label for="nameInput">Name</label>
+		<input type="text" th:field="*{username}" id="userNameInput" />
+
+		<input type="submit" value="Validate" />
+	</form>
+</body>
+
+</html>

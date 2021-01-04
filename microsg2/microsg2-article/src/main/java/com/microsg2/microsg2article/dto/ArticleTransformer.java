@@ -26,7 +26,6 @@ public class ArticleTransformer {
 	public ArticleR transform(Article a) {
 		ArticleR articleR = new ArticleR();
 		articleR.setId(a.getId());
-		System.out.println(a.getId());
 		articleR.setTitle(a.getTitle());
 		articleR.setDate(a.getDate());
 		articleR.setContent(a.getContent());
@@ -34,13 +33,15 @@ public class ArticleTransformer {
 		articleR.setAuthor(author);
 		YCategory category = categoryProxy.getCategory(a.getCategoryId());
 		articleR.setCategory(category);
+		
 		YComment[] comments = commentProxy.getComments(articleR.getId());
 		if (comments != null) {
 			for (YComment yComment : comments) {
-				yComment.setAuthor(authorProxy.getAuthor(a.getAuthorId()));
+				yComment.setAuthor(authorProxy.getAuthor(yComment.getAuthor_id()));
 			}
 			articleR.setComments(comments);
 		}
+		
 		return articleR;
 	}
 	

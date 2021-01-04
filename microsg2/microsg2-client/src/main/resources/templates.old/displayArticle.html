@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Delta</title>
+</head>
+
+<body>
+  <div class="nav">
+    <h1>Article</h1>
+  </div>
+
+  <div class="article">
+    <div class="articleHeader">
+      <div class="title">
+        <h3 th:utext="${article.date}">...</h3>
+      </div>
+      <div class="date">
+        <p th:utext="${article.title}">../../....</p>
+      </div>
+      <div class="author">
+        <p th:utext="${article.author.username}">...</p>
+      </div>
+    </div>
+    <div class="content">
+      <p th:utext="${article.content}">...</p>
+    </div>
+  </div>
+
+  <div class="commentSection">
+  	<div sec:authorize="isAuthenticated()">
+       <div class="createComment">
+      	  <form action="#" th:action="@{/saveComment}" th:object="${comment}" method="post">
+        	<input type="text" th:field="*{content}" id="contentInput"/>
+       		<input type="hidden" th:field="*{article_id}"/>
+        	<input type="hidden" th:field="*{author_id}"/>
+        	<input type="submit" value="Validate" />
+      	</form>
+    </div>
+    </div>
+    
+
+    <div class="comments">
+      <div class="comment" th:each="comment : ${article.comments}">
+        <hr>
+        <div class="commentHeader">
+          <div class="author">
+            <p th:utext="${comment.author.username}">...</p>
+          </div>
+          <div class="date">
+            <p th:utext="${comment.date}">...</p>
+          </div>
+        </div>
+        <div class="content">
+          <p th:utext="${comment.content}">...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

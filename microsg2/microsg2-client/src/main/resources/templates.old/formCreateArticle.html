@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delta</title>
+</head>
+
+<body>
+	<form method="post" th:action="@{/saveArticle}" th:object="${article}">
+		<label for="titleInput">Title</label>
+		<input type="text" th:field="*{title}" id="titleInput" />
+
+		<label for="categoryInput">Category</label>
+		<select th:field="*{category_id}">
+		  <option th:each="category : ${categories}" 
+		          th:value="${category.id}" 
+		          th:text="${category.name}">...</option>
+		</select>
+
+		<label for="contentInput">Content</label>
+		<input type="text" th:field="*{content}" id="contentInput" />
+
+		<input type="hidden" th:field="*{author_id}"/>
+
+		<input type="submit" value="Validate" />
+	</form>
+</body>
+
+</html>

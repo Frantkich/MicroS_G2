@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delta - Update Author</title>
+</head>
+
+<body>
+	<form method="post" th:action="@{/saveAuthor}" th:object="${user}">
+		<input type="hidden" th:field="*{id}" />
+
+		<label for="userNameInput">Username</label>
+		<input type="text" th:field="*{username}" id="userNameInput" />
+
+		<label for="emailInput">Email</label>
+		<input type="email" th:field="*{email}" id="emailInput" />
+
+		<label for="passwordInput">Password</label>
+		<input type="password" th:field="*{password}" id="passwordInput" />
+
+		<input type="submit" value="Validate" />
+	</form>
+</body>
+
+</html>
