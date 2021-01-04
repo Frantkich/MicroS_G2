@@ -83,7 +83,7 @@
 			<br>
 			<br>
 			<label for="categoryInput"><strong>Category</strong></label>
-			<select th:field="*{categoryId}">
+			<select th:field="*{category_id}">
 		  		<option th:each="category : ${categories}" 
 		          		th:value="${category.id}" 
 		          		th:text="${category.name}">...</option>
@@ -92,7 +92,7 @@
 			<br>
 			<label for="contentInput"><strong>Content</strong></label>
 			<input type="text" th:field="*{content}" id="contentInput" class="form-control"/>
-			<!-- <input type="hidden" th:field="*{author_id}" value="???"/> INSERT USER HERE  -->
+			<input type="hidden" th:field="*{author_id}"/>
 			<br>
 			<button type="submit" class="btn btn-primary">Create Article</button>
 		</form>

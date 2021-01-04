@@ -79,6 +79,8 @@ public class WebClientController {
 		 public String createArticle(Model model, Principal principal) {
 		 	Article article = new Article();
 		 	article.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
+		 	System.out.println(authorProxy.getIdByUsername(principal.getName()));
+		 	System.out.println(principal.getName());
 		 	model.addAttribute("article", article);
 			Iterable<YCategory> categories = categoryProxy.getCategories();
 			model.addAttribute("categories", categories);
