@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
 import com.microsg2.microsg2client.model.Article;
 import com.microsg2.microsg2client.model.YAuthor;
 import com.microsg2.microsg2client.model.YCategory;
@@ -29,9 +28,6 @@ public class WebClientController {
 
 	@Autowired
 	private CommentProxy commentProxy;
-
-	@Autowired
-	private AuthorDetails authorDetails;
 
 	@Autowired
 	private AuthorProxy authorProxy;
@@ -81,8 +77,6 @@ public class WebClientController {
 		 public String createArticle(Model model, Principal principal) {
 		 	Article article = new Article();
 		 	article.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
-		 	System.out.println(authorProxy.getIdByUsername(principal.getName()));
-		 	System.out.println(principal.getName());
 		 	model.addAttribute("article", article);
 			Iterable<YCategory> categories = categoryProxy.getCategories();
 			model.addAttribute("categories", categories);
@@ -90,13 +84,13 @@ public class WebClientController {
 		 	return "formCreateArticle";
 		 }
 		 @PostMapping("/saveArticle")
-		 public String saveArticle(@ModelAttribute Article article) {			
+		 public ModelAndView saveArticle(@ModelAttribute Article article) {
 			if(article.getId() == null) {
 		 		articleProxy.createArticle(article);
 		 	} else {
 		 		articleProxy.updateArticle(article);
 		 	}
-		 	return "index";
+			return new ModelAndView("redirect:/");
 		 }
 		 
 		 @GetMapping("/updateArticle/{id}")

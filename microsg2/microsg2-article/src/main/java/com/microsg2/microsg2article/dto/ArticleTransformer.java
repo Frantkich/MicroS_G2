@@ -29,9 +29,9 @@ public class ArticleTransformer {
 		articleR.setTitle(a.getTitle());
 		articleR.setDate(a.getDate());
 		articleR.setContent(a.getContent());
-		YAuthor author = authorProxy.getAuthor(a.getAuthorId());
+		YAuthor author = authorProxy.getAuthor(a.getAuthor_id());
 		articleR.setAuthor(author);
-		YCategory category = categoryProxy.getCategory(a.getCategoryId());
+		YCategory category = categoryProxy.getCategory(a.getCategory_id());
 		articleR.setCategory(category);
 		
 		YComment[] comments = commentProxy.getComments(articleR.getId());

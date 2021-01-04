@@ -87,19 +87,16 @@ public class ArticleProxy extends GenericProxy {
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(IllegalStateException ex) {
-		System.out.println("From fallback method IllegalState : " + ex.getMessage());
 		return new ArrayList<Article>();
 	}
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(TimeoutException ex) {
-		System.out.println("From fallback method Timeout : " + ex.getMessage());
 		return new ArrayList<Article>();
 	}
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(HttpServerErrorException ex) {
-		System.out.println("From fallback method HttpServerErrorException : " + ex.getMessage());
 		return new ArrayList<Article>();
 	}
 

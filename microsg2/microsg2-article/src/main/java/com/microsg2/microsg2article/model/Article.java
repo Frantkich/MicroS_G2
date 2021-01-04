@@ -67,19 +67,19 @@ public class Article {
 		this.content = content;
 	}
 
-	public int getAuthorId() {
+	public Integer getAuthor_id() {
 		return author_id;
 	}
 
-	public void setAuthorId(int author_id) {
+	public void setAuthor_id(Integer author_id) {
 		this.author_id = author_id;
 	}
 
-	public int getCategoryId() {
+	public Integer getCategory_id() {
 		return category_id;
 	}
 
-	public void setCategoryId(int category_id) {
+	public void setCategory_id(Integer category_id) {
 		this.category_id = category_id;
 	}
 	
