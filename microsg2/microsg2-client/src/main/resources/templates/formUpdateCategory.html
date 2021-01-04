@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 <style type="text/css">
-		body
-		{
-			padding-top: 56px;
-		}
-
 		main
 		{
 			text-align: center;
@@ -23,6 +18,61 @@
 </head>
 
 <body>
+
+	<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/}">Home
+          	<span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <div sec:authorize="isAuthenticated()">
+        	<li class="nav-item">
+          		<a class="nav-link" th:href="@{/createArticle}">New Article
+             		<span class="sr-only">(current)</span>
+          		</a>
+        	</li>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+        	<li class="nav-item">
+          		<a class="nav-link" th:href="@{/createCategory}">New Category
+          			<span class="sr-only">(current)</span>
+          		</a>
+        	</li>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+        	<li class="nav-item">
+          		<a class="nav-link" th:href="@{/login}">Log In
+          			<span class="sr-only">(current)</span>
+          		</a>
+        	</li>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+        	<li class="nav-item">
+          		<a class="nav-link" th:href="@{/createAuthor}">Sign in
+          			<span class="sr-only">(current)</span>
+          		</a>
+        	</li>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+        	<li class="nav-item">
+          		<a class="nav-link" th:href="@{/logout}">Log Out
+          			<span class="sr-only">(current)</span>
+          		</a>
+        	</li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 	<div class="card w-50 mb-5 mt-5">
 		<form method="post" th:action="@{/saveCategory}" th:object="${category}" class="form-group card-body">
 			<input type="hidden" th:field="*{id}" />
