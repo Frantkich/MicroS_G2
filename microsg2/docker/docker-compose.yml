@@ -1,53 +1,51 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    build: database/.
     restart: always
     ports:
       - '3306:3306'
-    volumes:
-      - ./resources/docker-sql/init.sql:/docker-entrypoint-initdb.d/init.sql
-  Eureka-Server:
+  ms-server:
     build: ms-server/.
     ports:
       - '9100:9100'
-  bootadmin:
+  ms-bootadmin:
     build: ms-bootadmin/.
     depends_on:
       - ms-server
     ports:
       - '9200:9200'
-  gateway:
+  ms-gateway:
     build: ms-gateway/.
     depends_on:
       - ms-server
     ports:
       - '9000:9000'
-  authorapi:
+  ms-authorapi:
     build: ms-author/.
     depends_on:
       - ms-server
     ports:
       - '9001:9001'
-  commentapi:
+  ms-commentapi:
     build: ms-comment/.
     depends_on:
       - ms-server
     ports:
       - '9003:9003'
-  categoryapi:
+  ms-categoryapi:
     build: ms-category/.
     depends_on:
       - ms-server
     ports:
       - '9004:9004'
-  articleapi:
+  ms-articleapi:
     build: ms-article/.
     depends_on:
       - ms-server
     ports:
       - '9002:9002'
-  webclient:
+  ms-webclient:
     build: ms-client/.
     depends_on:
       - ms-server
