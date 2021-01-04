@@ -9,10 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 import com.microsg2.microsg2client.daoAuthProvider.AuthorDetails;
@@ -33,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	    auth.userDetailsService(authorDetailsService()).passwordEncoder(encoder());
-	    System.out.println("secu1");
 	  }
 
     @Override
@@ -58,6 +53,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
-                .anyRequest().permitAll();
+                .antMatchers("/article").permitAll()
+                .antMatchers("/createAuthor").permitAll()
+                .antMatchers("/saveAuthor").permitAll()
+                .antMatchers("/category").permitAll()
+                .antMatchers("/createCategory").permitAll()
+                .antMatchers("/updateCategory").permitAll()
+                .antMatchers("/saveCategory").permitAll()
+                .antMatchers("/createArticle").authenticated()
+                .antMatchers("/saveArticle").authenticated()
+                .antMatchers("/updateArticle").authenticated()
+                .antMatchers("/saveComment").authenticated()
+                .antMatchers("/updateAuthor").authenticated()
+                .antMatchers("/deleteAuthor").authenticated();
     }
 }
