@@ -69,10 +69,12 @@ public class WebClientController {
 		public String displayArticle(@PathVariable int id, Model model, Principal principal) {
 		  Article article = articleProxy.getArticle(id);
 		  model.addAttribute("article", article);
-		  YComment comment = new YComment();
-		  comment.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
-		  comment.setArticle_id(id);
-		  model.addAttribute("comment", comment);
+		  if (principal != null) {
+			  YComment comment = new YComment();
+			  comment.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
+			  comment.setArticle_id(id);
+			  model.addAttribute("comment", comment);
+		  }
 		  return "displayArticle";
 		}
 		 @GetMapping("/createArticle")
