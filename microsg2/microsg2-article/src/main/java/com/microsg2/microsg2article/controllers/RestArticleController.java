@@ -49,7 +49,6 @@ public class RestArticleController {
 	public Article createCategory(@RequestBody Article article) {
 		Date date = new Date();
 		article.setDate(date);
-		article.setAuthorId(1);
 		article = articleRepository.save(article);		
 		return article;
 	}

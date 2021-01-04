@@ -81,8 +81,6 @@ public class WebClientController {
 		 public String createArticle(Model model, Principal principal) {
 		 	Article article = new Article();
 		 	article.setAuthor_id(authorProxy.getIdByUsername(principal.getName()));
-		 	System.out.println(authorProxy.getIdByUsername(principal.getName()));
-		 	System.out.println(principal.getName());
 		 	model.addAttribute("article", article);
 			Iterable<YCategory> categories = categoryProxy.getCategories();
 			model.addAttribute("categories", categories);
@@ -90,7 +88,7 @@ public class WebClientController {
 		 	return "formCreateArticle";
 		 }
 		 @PostMapping("/saveArticle")
-		 public String saveArticle(@ModelAttribute Article article) {			
+		 public String saveArticle(@ModelAttribute Article article) {
 			if(article.getId() == null) {
 		 		articleProxy.createArticle(article);
 		 	} else {

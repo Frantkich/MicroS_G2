@@ -53,6 +53,10 @@ public class ArticleProxy extends GenericProxy {
 	}
 	
 	public Article createArticle(Article article) {
+		System.out.println(article);
+		System.out.println(article.getAuthor_id());
+		System.out.println(article.getCategory_id());
+		System.out.println(article.getTitle());
 		String createArticlesUrl = props.getApiUrl() + "/article";
 		HttpEntity<Article> requestEntity = new HttpEntity<Article>(article);
 		ResponseEntity<Article> response = restTemplate.exchange(
