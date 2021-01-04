@@ -53,10 +53,6 @@ public class ArticleProxy extends GenericProxy {
 	}
 	
 	public Article createArticle(Article article) {
-		System.out.println(article);
-		System.out.println(article.getAuthor_id());
-		System.out.println(article.getCategory_id());
-		System.out.println(article.getTitle());
 		String createArticlesUrl = props.getApiUrl() + "/article";
 		HttpEntity<Article> requestEntity = new HttpEntity<Article>(article);
 		ResponseEntity<Article> response = restTemplate.exchange(
@@ -91,19 +87,16 @@ public class ArticleProxy extends GenericProxy {
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(IllegalStateException ex) {
-		System.out.println("From fallback method IllegalState : " + ex.getMessage());
 		return new ArrayList<Article>();
 	}
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(TimeoutException ex) {
-		System.out.println("From fallback method Timeout : " + ex.getMessage());
 		return new ArrayList<Article>();
 	}
 	
 	@SuppressWarnings("unused")
 	private Iterable<Article> fallback(HttpServerErrorException ex) {
-		System.out.println("From fallback method HttpServerErrorException : " + ex.getMessage());
 		return new ArrayList<Article>();
 	}
 

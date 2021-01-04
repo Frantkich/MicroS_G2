@@ -88,13 +88,13 @@ public class WebClientController {
 		 	return "formCreateArticle";
 		 }
 		 @PostMapping("/saveArticle")
-		 public String saveArticle(@ModelAttribute Article article) {
+		 public ModelAndView saveArticle(@ModelAttribute Article article) {
 			if(article.getId() == null) {
 		 		articleProxy.createArticle(article);
 		 	} else {
 		 		articleProxy.updateArticle(article);
 		 	}
-		 	return "index";
+			return new ModelAndView("redirect:/");
 		 }
 		 
 		 @GetMapping("/updateArticle/{id}")
